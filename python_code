@@ -1,4 +1,3 @@
-# Write your code here
 import random
 import sqlite3
 
