@@ -1,13 +1,16 @@
+#import python packages
 import random
 import sqlite3
 
+# create connection
 conn = sqlite3.connect('card.s3db')
+#create a table for storing data
 create_table = """CREATE TABLE IF NOT EXISTS card(id INTEGER NOT NULL PRIMARY KEY, number TEXT NOT NULL, pin TEXT, balance INTEGER);"""
 c = conn.cursor()
 c.execute(create_table)
 conn.commit()
 
-
+# function to define a client i.e card PIN and ID etc
 class Client:
     def __init__(self, card_id, card_pin, balance, log_flag=False):
         self.card_id = card_id
@@ -60,7 +63,7 @@ class Bank:
                 self.run_session()
             else:
                 self.run_session()
-
+# determine if login is successful or not
     def login(self):
         card_id = input('Enter your card number:\n')
         card_pin = input('Enter your PIN:\n')
@@ -80,7 +83,7 @@ class Bank:
         else:
             print('Wrong card number or PIN!\n')
             self.run_session()
-
+# defines transaction to be made and effect changes
     def transactions(self, ids):
         para = int(ids)
         self_input = int(
